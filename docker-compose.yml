@@ -1,0 +1,25 @@
+services:
+  api-gateway:
+    build:
+      context: .
+      dockerfile: ./api_gateway/Dockerfile
+    ports:
+      - "8000:8000"
+
+  faq-service:
+    build:
+      context: .
+      dockerfile: ./faq_service/Dockerfile
+    environment:
+      - AZURE_OPENAI_ENDPOINT=${AZURE_OPENAI_ENDPOINT}
+      - AZURE_OPENAI_API_KEY=${AZURE_OPENAI_API_KEY}
+      - DEPLOYED_MODEL=${DEPLOYED_MODEL}
+
+  summarizer-service:
+    build:
+      context: .
+      dockerfile: ./summarizer_service/Dockerfile
+    environment:
+      - AZURE_OPENAI_ENDPOINT=${AZURE_OPENAI_ENDPOINT}
+      - AZURE_OPENAI_API_KEY=${AZURE_OPENAI_API_KEY}
+      - DEPLOYED_MODEL=${DEPLOYED_MODEL}

@@ -1,0 +1,5 @@
+fastapi
+uvicorn
+# azure-ai-openai
+httpx
+openai
